@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Avaliações da Razor Pub Barbearia";
+    ViewData["Description"] =
+        "Veja avaliações de clientes da Razor Pub Barbearia em Interlagos.";
+}
+
+<section class="reviews-page">
+    <div class="page-intro">
+        <p class="eyebrow">QUEM PASSA POR AQUI, APROVA</p>
+
+        <h1>AVALIAÇÕES DA BARBEARIA RAZOR PUB</h1>
+
+        <p class="page-description">
+            Cuidado nos detalhes, ambiente acolhedor e uma experiência que
+            vai além do corte.
+        </p>
+    </div>
+
+    <div class="reviews-grid">
+        <article class="review-card">
+            <span class="review-stars">★★★★★</span>
+
+            <p>
+                “Ambiente incrível e atendimento impecável.
+                Saí renovado e com o melhor corte que já fiz.”
+            </p>
+
+            <strong>CARLOS M.</strong>
+        </article>
+
+        <article class="review-card">
+            <span class="review-stars">★★★★★</span>
+
+            <p>
+                “Profissionais atenciosos, espaço muito bonito e um cuidado
+                que faz toda diferença.”
+            </p>
+
+            <strong>RAFAEL A.</strong>
+        </article>
+
+        <article class="review-card">
+            <span class="review-stars">★★★★★</span>
+
+            <p>
+                “Mais que uma barbearia: uma experiência completa.
+                Meu lugar favorito em Interlagos.”
+            </p>
+
+            <strong>GUILHERME R.</strong>
+        </article>
+    </div>
+
+    <section class="page-cta">
+        <p>VENHA CONHECER A RAZOR PUB</p>
+
+        <div>
+            <a class="button button-light"
+               href="https://wa.me/5511916599253"
+               target="_blank"
+               rel="noopener noreferrer">
+                AGENDAR HORÁRIO
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Espaco">
+                CONHECER O ESPAÇO
+            </a>
+
+                        <a class="button"
+               asp-controller="Home"
+               asp-action="Index">
+                VOLTAR AO INÍCIO
+            </a>
+
+        </div>
+    </section>
+</section>

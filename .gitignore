@@ -1,0 +1,39 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build .NET
+**/bin/
+**/obj/
+
+# Dados e segredos locais
+appsettings.Development.json
+secrets.json
+.env
+.env.*
+
+# Perfis e credenciais de publicação
+*.publishSettings
+*.pubxml.user
+**/Properties/PublishProfiles/
+
+# Banco local e backups
+*.mdf
+*.ldf
+*.bak
+
+# Imagens enviadas pelo painel administrativo
+**/wwwroot/uploads/
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
+# Configurações exclusivas de produção/local
+appsettings.Production.json
+**/Properties/serviceDependencies.local.json
+
+# Configuracao local do Visual Studio
+RazorPub/Properties/serviceDependencies.local.json

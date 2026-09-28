@@ -1,0 +1,25 @@
+﻿@model RazorPub.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Novo Post";
+}
+
+<section class="blog-editor-page">
+    <div class="blog-editor-header">
+        <div>
+            <p class="eyebrow">ÁREA ADMINISTRATIVA</p>
+            <h1>NOVO POST</h1>
+            <p>Crie um novo conteúdo para o blog da Razor Pub.</p>
+        </div>
+
+        <a asp-action="Manage" class="button">
+            VOLTAR AO PAINEL
+        </a>
+    </div>
+
+    <partial name="_PostForm" model="Model" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

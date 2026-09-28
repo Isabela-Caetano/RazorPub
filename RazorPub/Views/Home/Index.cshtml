@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Razor Pub Barbearia";
+    ViewData["HomePage"] = true;
+}
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <img src="~/imagens/logosemfundo.png"
+             alt="Razor Pub Barbearia"
+             class="hero-logo" />
+
+        <p class="eyebrow">
+            BARBEARIA · DESDE 2018
+        </p>
+
+        <h1>
+            BARBEARIA<br />
+            EM INTERLAGOS
+        </h1>
+
+        <p class="hero-slogan">
+            TRADIÇÃO. <em>ESTILO.</em> ATITUDE.
+        </p>
+
+        <p class="hero-text">
+            Cortes precisos, barba feita à navalha e o ambiente
+            que todo homem merece.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a class="button button-light"
+               href="https://api.whatsapp.com/send/?phone=5511916599253&text&type=phone_number&app_absent=0"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                AGENDE AGORA
+
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Servicos">
+
+                VER SERVIÇOS
+
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Espaco">
+
+                VER LOCAL
+
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Avaliacoes">
+
+                VER AVALIAÇÕES
+
+            </a>
+
+            <a class="button"
+               asp-controller="Blog"
+               asp-action="Index">
+
+                POSTAGENS
+
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Sobre">
+                SOBRE A RAZOR PUB
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-info">
+
+        <a href="https://www.instagram.com/razorpub_interlagos/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="instagram-link">
+
+           <i class="bi bi-instagram"></i>
+           @@razorpub_interlagos
+
+        </a>
+
+        <span>•</span>
+
+        <span>
+            Av. Prof. Papini, 303 · Cidade Dutra
+        </span>
+
+        <span>•</span>
+
+        <span>
+            (11) 91659-9253
+        </span>
+
+    </div>
+
+</section>

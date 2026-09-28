@@ -1,0 +1,102 @@
+﻿@model RazorPub.Models.BlogPost
+
+<form method="post"
+      enctype="multipart/form-data"
+      class="blog-editor-form">
+
+    @Html.AntiForgeryToken()
+
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="CoverImagePath" type="hidden" />
+
+    <div asp-validation-summary="ModelOnly"
+         class="blog-validation">
+    </div>
+
+    <div class="blog-form-field">
+        <label asp-for="Title">Título do post</label>
+
+        <input asp-for="Title"
+               placeholder="Ex.: Como cuidar da barba no dia a dia" />
+
+        <span asp-validation-for="Title" class="blog-validation"></span>
+    </div>
+
+    <div class="blog-form-field">
+        <label asp-for="Summary">Resumo</label>
+
+        <textarea asp-for="Summary"
+                  rows="3"
+                  placeholder="Um pequeno resumo que aparecerá na página do blog."></textarea>
+
+        <span asp-validation-for="Summary" class="blog-validation"></span>
+    </div>
+
+    <div class="blog-form-field">
+        <label asp-for="Content">Conteúdo</label>
+
+        <textarea asp-for="Content"
+                  rows="12"
+                  placeholder="Escreva o conteúdo completo do post այստեղ."></textarea>
+
+        <span asp-validation-for="Content" class="blog-validation"></span>
+    </div>
+
+    <div class="blog-form-field">
+        <label for="coverImage">Imagem de capa</label>
+
+        <input id="coverImage"
+               name="coverImage"
+               type="file"
+               accept=".jpg,.jpeg,.png,.webp" />
+
+        <small>Formatos aceitos: JPG, JPEG, PNG ou WebP. Máximo de 5 MB.</small>
+
+        <span class="blog-validation">
+            @Html.ValidationMessage("coverImage")
+        </span>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.CoverImagePath))
+    {
+        <div class="current-cover">
+            <p>IMAGEM ATUAL</p>
+
+            <img src="@Model.CoverImagePath"
+                 alt="Imagem atual do post" />
+        </div>
+    }
+
+    <div class="publish-check">
+        <input asp-for="IsPublished" />
+
+        <label asp-for="IsPublished">
+            Publicar este post agora
+        </label>
+    </div>
+
+    <div class="blog-form-actions">
+        <button type="submit" class="button button-light">
+            SALVAR POST
+        </button>
+
+        <a asp-action="Manage" class="button">
+            CANCELAR
+        </a>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.CoverImagePath))
+    {
+        <div class="remove-cover">
+            <input id="removeCoverImage"
+                   name="removeCoverImage"
+                   type="checkbox"
+                   value="true" />
+
+            <label for="removeCoverImage">
+                Remover a imagem de capa atual
+            </label>
+        </div>
+    }
+
+</form>

@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] =
+        "Conheça a Barbearia Razor Pub em Interlagos";
+
+    ViewData["Description"] =
+        "Conheça o espaço da Razor Pub Barbearia em Interlagos: recepção, espaço kids e espaço game.";
+}
+
+<section class="space-page">
+    <div class="space-intro">
+        <p class="eyebrow">CONHEÇA DE PERTO</p>
+
+        <h1 class="space-title">
+            CONHEÇA A BARBEARIA RAZOR PUB EM INTERLAGOS
+        </h1>
+
+        <p class="space-description">
+            Um ambiente pensado nos mínimos detalhes — iluminação quente,
+            mobiliário sob medida e a atmosfera certa para uma pausa do mundo
+            lá fora. Aqui cada visita é um ritual.
+        </p>
+    </div>
+
+    <div class="space-gallery">
+        <figure class="space-card">
+            <img src="~/imagens/recepcao.png"
+                 alt="Recepção da Razor Pub Barbearia" />
+            <figcaption>RECEPÇÃO</figcaption>
+        </figure>
+
+        <figure class="space-card">
+            <img src="~/imagens/espaco.png"
+                 alt="Espaço interno da Razor Pub Barbearia" />
+            <figcaption>ESPAÇO</figcaption>
+        </figure>
+
+        <figure class="space-card">
+            <img src="~/imagens/salakids.png"
+                 alt="Espaço kids da Razor Pub Barbearia" />
+            <figcaption>ESPAÇO KIDS</figcaption>
+        </figure>
+
+        <figure class="space-card">
+            <img src="~/imagens/espacogame.png"
+                 alt="Espaço game da Razor Pub Barbearia" />
+            <figcaption>ESPAÇO GAME</figcaption>
+        </figure>
+
+        <figure class="space-card">
+            <img src="~/imagens/terraco.png"
+                 alt="Terraço da Razor Pub Barbearia" />
+            <figcaption>TERRAÇO</figcaption>
+        </figure>
+    </div>
+
+    <section class="page-cta">
+        <p>GOSTOU DO NOSSO ESPAÇO?</p>
+
+        <div>
+            <a class="button button-light"
+               href="https://wa.me/5511916599253"
+               target="_blank"
+               rel="noopener noreferrer">
+                AGENDAR HORÁRIO
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Servicos">
+                SERVIÇOS E VALORES
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Avaliacoes">
+                VER AVALIAÇÕES
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Index">
+                VOLTAR AO INÍCIO
+            </a>
+
+        </div>
+    </section>
+</section>

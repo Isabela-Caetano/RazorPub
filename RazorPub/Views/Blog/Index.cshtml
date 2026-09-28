@@ -1,0 +1,88 @@
+﻿@model IReadOnlyList<RazorPub.Models.BlogPost>
+
+@{
+    ViewData["Title"] = "Blog";
+    ViewData["Description"] =
+        "Conteúdos da Razor Pub sobre barba, cabelo, estilo e cuidados masculinos.";
+}
+
+<section class="blog-page">
+    <div class="blog-page-intro">
+        <p class="eyebrow">RAZOR PUB JOURNAL</p>
+
+        <h1>ESTILO, CUIDADO E ATITUDE.</h1>
+
+        <p>
+            Conteúdos sobre barba, cabelo, rotina de cuidados e o universo
+            da barbearia.
+        </p>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="blog-empty">
+            <h2>Novos conteúdos em breve.</h2>
+            <p>Estamos preparando novidades para você.</p>
+        </div>
+    }
+    else
+    {
+        <div class="blog-grid">
+            @foreach (var post in Model)
+            {
+                <article class="blog-card">
+                    @if (!string.IsNullOrWhiteSpace(post.CoverImagePath))
+                    {
+                        <a asp-action="Details" asp-route-id="@post.Id">
+                            <img src="@post.CoverImagePath"
+                                 alt="@post.Title"
+                                 class="blog-card-image" />
+                        </a>
+                    }
+
+                    <div class="blog-card-content">
+                        <p class="blog-date">
+                            @post.CreatedAt.ToLocalTime().ToString("dd 'de' MMMM 'de' yyyy")
+                        </p>
+
+                        <h2>@post.Title</h2>
+
+                        <p>@post.Summary</p>
+
+                        <a asp-action="Details"
+                           asp-route-id="@post.Id"
+                           class="blog-read-link">
+                            LER POST <span>→</span>
+                        </a>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+
+    <section class="page-cta">
+        <p>PRONTO PARA VIVER A EXPERIÊNCIA RAZOR PUB?</p>
+
+        <div>
+            <a class="button button-light"
+               href="https://wa.me/5511916599253"
+               target="_blank"
+               rel="noopener noreferrer">
+                AGENDAR HORÁRIO
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Servicos">
+                SERVIÇOS E VALORES
+            </a>
+
+            <a class="button"
+               asp-controller="Home"
+               asp-action="Index">
+                VOLTAR AO INÍCIO
+            </a>
+
+        </div>
+    </section>
+</section>

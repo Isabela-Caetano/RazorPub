@@ -1,0 +1,90 @@
+﻿@{
+    var bodyClass = ViewData["HomePage"] is true ? "home-page" : "";
+
+    var isIdentityPage = Context.Request.Path.StartsWithSegments("/Identity");
+
+    var pageClass = $"{bodyClass} {(isIdentityPage ? "identity-page" : "")}";
+
+    var pageTitle = ViewData["Title"]?.ToString()
+        ?? "Razor Pub Barbearia";
+
+    var description = ViewData["Description"]?.ToString()
+        ?? "Razor Pub Barbearia em Interlagos.";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@pageTitle | Razor Pub Barbearia</title>
+    <meta name="description" content="@description" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="@pageClass">
+
+    @if (!isIdentityPage)
+    {
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <div class="site-session">
+                <a class="admin-shortcut"
+                   asp-controller="Blog"
+                   asp-action="Manage">
+                    GERENCIAR BLOG
+                </a>
+
+                <form asp-area="Identity"
+                      asp-page="/Account/Logout"
+                      asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
+                      method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <button type="submit" class="logout-button">
+                        SAIR
+                    </button>
+                </form>
+            </div>
+        }
+        else
+        {
+
+            <a class="home-login"
+               asp-area="Identity"
+               asp-page="/Account/Login"
+               asp-route-returnUrl="/Blog/Manage">
+                ÁREA ADMIN
+            </a>
+
+        }
+    }
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="footer-home-link">
+            RAZOR PUB BARBEARIA
+        </a>
+
+        <p>
+            © @DateTime.Now.Year Razor Pub Barbearia.
+            Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

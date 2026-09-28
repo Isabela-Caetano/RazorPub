@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Sobre a Razor Pub Barbearia em Interlagos";
+
+    ViewData["Description"] =
+        "Conheça a história, o ambiente e o estilo da Razor Pub Barbearia em Interlagos.";
+}
+
+<section class="about-page">
+    <div class="about-image-wrap">
+        <img src="~/imagens/sobre.png"
+             alt="Barbearia Razor Pub em Interlagos"
+             class="about-image" />
+    </div>
+
+    <div class="about-content">
+        <p class="eyebrow">SOBRE NÓS</p>
+
+        <h1>MAIS QUE UMA BARBEARIA, UM RITUAL.</h1>
+
+        <p>
+            A Razor Pub nasceu da vontade de unir tradição e modernidade.
+            Aqui, cada corte é uma assinatura — feito com técnica, atenção
+            ao detalhe e o tempo que cada cliente merece.
+        </p>
+
+        <p>
+            Música boa, ambiente acolhedor e profissionais apaixonados pelo
+            ofício. É o lugar onde o homem moderno desacelera, conversa e sai
+            pronto para dominar o mundo.
+        </p>
+
+        <div class="about-stats">
+            <div>
+                <strong>7+</strong>
+                <span>ANOS</span>
+            </div>
+
+            <div>
+                <strong>12K</strong>
+                <span>CLIENTES</span>
+            </div>
+
+            <div>
+                <strong>5★</strong>
+                <span>AVALIAÇÃO</span>
+            </div>
+        </div>
+
+        <section class="page-cta about-cta">
+            <p>PRONTO PARA VIVER A EXPERIÊNCIA RAZOR PUB?</p>
+
+            <div>
+                <a class="button button-light"
+                   href="https://wa.me/5511916599253"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    AGENDAR HORÁRIO
+                </a>
+
+                <a class="button"
+                   asp-controller="Home"
+                   asp-action="Index">
+                    VOLTAR AO INÍCIO
+                </a>
+            </div>
+        </section>
+    </div>
+</section>

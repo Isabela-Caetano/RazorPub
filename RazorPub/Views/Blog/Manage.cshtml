@@ -1,0 +1,134 @@
+﻿@model IReadOnlyList<RazorPub.Models.BlogPost>
+
+@{
+    ViewData["Title"] = "Gerenciar Blog";
+}
+
+<section class="admin-page">
+    <header class="admin-header">
+        <div>
+            <p class="eyebrow">ÁREA ADMINISTRATIVA</p>
+
+            <h1>GERENCIAR POSTS</h1>
+
+            <p>
+                Crie, publique, edite ou exclua os conteúdos do blog
+                da Razor Pub.
+            </p>
+        </div>
+
+        <div class="admin-header-actions">
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="button">
+                IR PARA O SITE
+            </a>
+
+            <a asp-action="Index"
+               class="button">
+                VER BLOG PÚBLICO
+            </a>
+
+            <a asp-action="Create"
+               class="button button-light">
+                NOVO POST
+            </a>
+
+            <form asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
+                  method="post">
+                @Html.AntiForgeryToken()
+
+                <button type="submit" class="button button-danger">
+                    SAIR
+                </button>
+            </form>
+        </div>
+    </header>
+
+    @if (!Model.Any())
+    {
+        <div class="admin-empty">
+            <h2>Nenhum post criado ainda.</h2>
+
+            <p>
+                Crie o primeiro conteúdo para aparecer no blog público.
+            </p>
+
+            <a asp-action="Create" class="button button-light">
+                CRIAR PRIMEIRO POST
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="admin-post-list">
+            @foreach (var post in Model)
+            {
+                <article class="admin-post-card">
+                    @if (!string.IsNullOrWhiteSpace(post.CoverImagePath))
+                    {
+                        <img src="@post.CoverImagePath"
+                             alt="@post.Title"
+                             class="admin-post-image" />
+                    }
+
+                    <div class="admin-post-content">
+                        <div class="admin-post-status">
+                            @if (post.IsPublished)
+                            {
+                                <span class="status-published">
+                                    PUBLICADO
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-draft">
+                                    RASCUNHO
+                                </span>
+                            }
+
+                            <span>
+                                @post.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy")
+                            </span>
+                        </div>
+
+                        <h2>@post.Title</h2>
+
+                        <p>@post.Summary</p>
+
+                        <div class="admin-post-actions">
+                            <a asp-action="Edit"
+                               asp-route-id="@post.Id"
+                               class="button">
+                                EDITAR
+                            </a>
+
+                            <form asp-action="TogglePublished"
+                                  asp-route-id="@post.Id"
+                                  method="post">
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="button">
+                                    @(post.IsPublished ? "DESPUBLICAR" : "PUBLICAR")
+                                </button>
+                            </form>
+
+                            <form asp-action="Delete"
+                                  asp-route-id="@post.Id"
+                                  method="post"
+                                  onsubmit="return confirm('Deseja realmente excluir este post?');">
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="button button-danger">
+                                    EXCLUIR
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</section>

@@ -1,0 +1,25 @@
+﻿@model RazorPub.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Editar Post";
+}
+
+<section class="blog-editor-page">
+    <div class="blog-editor-header">
+        <div>
+            <p class="eyebrow">ÁREA ADMINISTRATIVA</p>
+            <h1>EDITAR POST</h1>
+            <p>Atualize as informações e a imagem de capa do conteúdo.</p>
+        </div>
+
+        <a asp-action="Manage" class="button">
+            VOLTAR AO PAINEL
+        </a>
+    </div>
+
+    <partial name="_PostForm" model="Model" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

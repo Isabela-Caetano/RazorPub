@@ -1,0 +1,50 @@
+﻿@model RazorPub.Models.BlogPost
+
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Summary;
+}
+
+<article class="blog-details-page">
+    <div class="blog-details-header">
+        <a asp-action="Index" class="back-link">
+            ← VOLTAR PARA O BLOG
+        </a>
+
+        <p class="eyebrow">RAZOR PUB JOURNAL</p>
+
+        <h1>@Model.Title</h1>
+
+        <p class="blog-details-date">
+            Publicado em @Model.CreatedAt.ToLocalTime().ToString("dd 'de' MMMM 'de' yyyy")
+        </p>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.CoverImagePath))
+    {
+        <img src="@Model.CoverImagePath"
+             alt="@Model.Title"
+             class="blog-details-image" />
+    }
+
+    <div class="blog-details-content">
+        @Model.Content
+    </div>
+
+    <section class="page-cta">
+        <p>CURTIU O CONTEÚDO?</p>
+
+        <div>
+            <a class="button button-light"
+               href="https://wa.me/5511916599253"
+               target="_blank"
+               rel="noopener noreferrer">
+                AGENDAR HORÁRIO
+            </a>
+
+            <a class="button" asp-action="Index">
+                VER MAIS POSTS
+            </a>
+        </div>
+    </section>
+</article>

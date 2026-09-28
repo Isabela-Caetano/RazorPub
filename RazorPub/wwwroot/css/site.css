@@ -1,0 +1,1344 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+/* =========================================================
+   1. CORES, FONTES E CONFIGURAÇÕES GERAIS
+========================================================= */
+
+:root {
+    --bg: #17130f;
+    --bg-soft: #211b16;
+    --bg-card: rgba(255, 255, 255, .035);
+    --text: #f7f3ed;
+    --muted: #b5ada3;
+    --line: rgba(255, 255, 255, .14);
+    --gold: #b89a67;
+    --gold-light: #d3b681;
+    --danger: #9e4942;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+    background: radial-gradient(ellipse at top, #2a2420 0%, #1b1714 38%, #0d0c0b 100%);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
+}
+
+main {
+    min-height: calc(100vh - 130px);
+}
+
+body.home-page {
+    min-height: 100dvh;
+}
+
+    body.home-page .site-footer {
+        display: none;
+    }
+
+h1,
+h2,
+h3 {
+    font-family: "Bebas Neue", Impact, sans-serif;
+    font-weight: 400;
+    letter-spacing: .045em;
+}
+
+p {
+    margin-top: 0;
+}
+
+.eyebrow {
+    margin: 0 0 18px;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   2. BOTÕES GERAIS
+========================================================= */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 155px;
+    padding: 20px 40px;
+    border: 1px solid rgba(255, 255, 255, .20);
+    background: rgba(255, 255, 255, .025);
+    color: #ffffff;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 15px;
+    letter-spacing: .08em;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+    .button:hover {
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, .05);
+        color: var(--gold);
+        transform: translateY(-2px);
+    }
+
+.button-light {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: #17130f;
+}
+
+    .button-light:hover {
+        border-color: var(--gold-light);
+        background: var(--gold-light);
+        color: #17130f;
+    }
+
+.button-danger {
+    border-color: var(--danger);
+    color: #ffc2bb;
+}
+
+    .button-danger:hover {
+        border-color: var(--danger);
+        background: var(--danger);
+        color: #ffffff;
+    }
+
+/* =========================================================
+   3. ÁREA ADMIN E BOTÃO SAIR
+========================================================= */
+
+.home-login,
+.site-session .logout-button {
+    position: fixed;
+    z-index: 1000;
+    top: 24px;
+    right: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 17px;
+    border: 1px solid rgba(184, 154, 103, .8);
+    background: rgba(23, 19, 15, .88);
+    color: var(--text);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: .25s ease;
+}
+
+    .home-login:hover,
+    .site-session .logout-button:hover {
+        border-color: var(--gold);
+        background: var(--gold);
+        color: #17130f;
+        transform: translateY(-2px);
+    }
+
+/* =========================================================
+   4. PÁGINA INICIAL
+========================================================= */
+
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 43%, rgba(184, 154, 103, .17), transparent 32%), radial-gradient(circle at center, rgba(82, 63, 47, .32), rgba(17, 14, 11, .95) 72%), linear-gradient(135deg, #211a15 0%, #110f0d 100%);
+    text-align: center;
+}
+
+    .hero::before {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(0, 0, 0, .35), transparent 25%, transparent 75%, rgba(0, 0, 0, .35)), linear-gradient(to bottom, rgba(0, 0, 0, .18), transparent 35%, rgba(0, 0, 0, .52));
+        content: "";
+        pointer-events: none;
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    padding: 70px 24px 130px;
+}
+
+.hero-logo {
+    display: block;
+    width: 255px;
+    max-width: 60vw;
+    height: auto;
+    margin: 0 auto 25px;
+    filter: drop-shadow(0 12px 30px rgba(0, 0, 0, .55));
+}
+
+.hero h1 {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text);
+    font-size: clamp(4.6rem, 9vw, 8rem);
+    line-height: .82;
+}
+
+.hero-slogan {
+    margin: 20px 0 0;
+    color: var(--gold);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    letter-spacing: .13em;
+}
+
+    .hero-slogan em {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+    }
+
+.hero-text {
+    max-width: 600px;
+    margin: 24px auto 30px;
+    color: rgba(255, 255, 255, .72);
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.hero-info {
+    position: absolute;
+    z-index: 2;
+    bottom: 28px;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    gap: 13px;
+    width: 92%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, .68);
+    flex-wrap: wrap;
+    font-size: 20px;
+}
+
+    .hero-info a {
+        color: var(--gold);
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+/* =========================================================
+   5. ESTRUTURA E CTA DAS PÁGINAS INTERNAS
+========================================================= */
+
+.services-page,
+.space-page,
+.reviews-page,
+.contact-page {
+    width: min(1450px, 100%);
+    margin: 0 auto;
+    padding: 115px 32px 90px;
+}
+
+.page-intro {
+    max-width: 820px;
+    margin: 0 auto 70px;
+    text-align: center;
+}
+
+    .page-intro h1 {
+        max-width: 900px;
+        margin: 0 auto;
+        color: var(--text);
+        font-size: clamp(3.1rem, 5.8vw, 5.8rem);
+        line-height: .92;
+    }
+
+.page-description {
+    max-width: 680px;
+    margin: 25px auto 0;
+    color: var(--muted);
+    font-size: 20px;
+    line-height: 1.65;
+}
+
+.page-cta {
+    max-width: 900px;
+    margin: 85px auto 0;
+    padding: 40px 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+}
+
+    .page-cta p {
+        margin-bottom: 20px;
+        color: var(--gold);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        letter-spacing: .12em;
+    }
+
+    .page-cta div {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+/* =========================================================
+   6. PÁGINA SERVIÇOS
+========================================================= */
+
+.services-header {
+    max-width: 780px;
+    margin: 0 auto 65px;
+    text-align: center;
+}
+
+    .services-header h1 {
+        margin: 0 0 18px;
+        color: var(--text);
+        font-family: "Playfair Display", serif;
+        font-size: clamp(3rem, 5.5vw, 5.5rem);
+        font-style: italic;
+        letter-spacing: -.04em;
+        line-height: 1;
+    }
+
+    .services-header p {
+        max-width: 610px;
+        margin: 0 auto;
+        color: var(--muted);
+        line-height: 1.65;
+    }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.service-card {
+    min-height: 225px;
+    padding: 32px;
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, .12);
+    transition: .25s ease;
+}
+
+    .service-card:hover {
+        border-color: rgba(184, 154, 103, .7);
+        background: rgba(255, 255, 255, .045);
+        transform: translateY(-4px);
+    }
+
+.service-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.service-icon {
+    color: var(--gold);
+    font-size: 24px;
+}
+
+.service-price {
+    color: var(--gold-light);
+    font-family: "Playfair Display", serif;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.service-card h2 {
+    margin: 52px 0 12px;
+    font-size: 25px;
+    line-height: 1;
+}
+
+.service-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+/* =========================================================
+   7. PÁGINA ESPAÇO
+========================================================= */
+
+.space-intro {
+    max-width: 800px;
+    margin: 0 auto 75px;
+    text-align: center;
+}
+
+.space-title {
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--text);
+    font-size: clamp(3.2rem, 5.5vw, 5.8rem);
+    line-height: .9;
+}
+
+.space-description {
+    max-width: 700px;
+    margin: 27px auto 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.space-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.space-card {
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 3 / 4;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+}
+
+    .space-card::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, .82), transparent 55%);
+        content: "";
+        pointer-events: none;
+    }
+
+    .space-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform .4s ease, filter .4s ease;
+    }
+
+    .space-card:hover img {
+        filter: brightness(1.08);
+        transform: scale(1.06);
+    }
+
+    .space-card figcaption {
+        position: absolute;
+        z-index: 1;
+        bottom: 18px;
+        left: 16px;
+        color: #ffffff;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+/* =========================================================
+   8. PÁGINA SOBRE
+========================================================= */
+
+.about-page {
+    width: min(1280px, calc(100% - 3rem));
+    min-height: 760px;
+    margin: 0 auto;
+    padding: 7rem 0 6rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 8rem);
+}
+
+.about-image-wrap {
+    min-height: 680px;
+    overflow: hidden;
+    background: #080706;
+}
+
+.about-image {
+    display: block;
+    width: 100%;
+    height: 680px;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(100%) contrast(1.08);
+}
+
+.about-content {
+    max-width: 620px;
+}
+
+    .about-content h1 {
+        max-width: 620px;
+        margin: .7rem 0 2rem;
+        color: var(--text);
+        font-size: clamp(2.4rem, 4.5vw, 4.7rem);
+        line-height: .98;
+    }
+
+    .about-content > p:not(.eyebrow) {
+        margin: 0 0 1.25rem;
+        color: #c5b9a9;
+        font-size: 1.05rem;
+        line-height: 1.75;
+    }
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2.8rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+}
+
+    .about-stats div {
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+    }
+
+    .about-stats strong {
+        color: var(--text);
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        line-height: 1;
+    }
+
+    .about-stats span {
+        color: var(--gold);
+        font-size: .68rem;
+        font-weight: 800;
+        letter-spacing: .14rem;
+    }
+
+.about-cta {
+    margin: 3rem 0 0;
+    padding: 1.8rem 0 0;
+    text-align: left;
+    border-top: 1px solid var(--line);
+}
+
+    .about-cta p {
+        margin-bottom: 1.2rem;
+    }
+
+    .about-cta > div {
+        justify-content: flex-start;
+    }
+
+/* =========================================================
+   9. PÁGINA AVALIAÇÕES
+========================================================= */
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.review-card {
+    position: relative;
+    min-height: 260px;
+    padding: 34px 30px;
+    border: 1px solid var(--line);
+    background: var(--bg-card);
+}
+
+    .review-card::before {
+        position: absolute;
+        top: 0;
+        left: 30px;
+        width: 42px;
+        height: 2px;
+        background: var(--gold);
+        content: "";
+    }
+
+.review-stars {
+    display: block;
+    margin: 15px 0 25px;
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+.review-card p {
+    color: var(--text);
+    font-family: "Playfair Display", serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.55;
+}
+
+.review-card strong {
+    display: block;
+    margin-top: 24px;
+    color: var(--muted);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: .12em;
+}
+
+/* =========================================================
+   10. PÁGINA CONTATO
+========================================================= */
+
+.contact-page .page-intro .button {
+    margin-top: 30px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    min-height: 230px;
+    padding: 34px 30px;
+    border-top: 1px solid var(--gold);
+    background: var(--bg-card);
+}
+
+    .contact-card > span {
+        color: var(--gold);
+        font-size: 25px;
+    }
+
+    .contact-card h2 {
+        margin: 28px 0 13px;
+        font-size: 24px;
+    }
+
+    .contact-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+/* =========================================================
+   11. BLOG PÚBLICO
+========================================================= */
+
+.blog-page,
+.blog-details-page,
+.blog-editor-page,
+.admin-page {
+    width: min(1120px, calc(100% - 3rem));
+    margin: 0 auto;
+    padding: 9rem 0 6rem;
+}
+
+.blog-page-intro,
+.blog-details-header {
+    max-width: 760px;
+    margin-bottom: 3.5rem;
+}
+
+    .blog-page-intro h1,
+    .blog-details-header h1,
+    .blog-editor-header h1,
+    .admin-header h1 {
+        margin: .65rem 0 1rem;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        line-height: .95;
+    }
+
+    .blog-page-intro > p:not(.eyebrow),
+    .blog-editor-header p:not(.eyebrow),
+    .admin-header p:not(.eyebrow) {
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+}
+
+.blog-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-card);
+    transition: transform .25s ease, border-color .25s ease;
+}
+
+    .blog-card:hover {
+        border-color: var(--gold);
+        transform: translateY(-6px);
+    }
+
+.blog-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.blog-card-content {
+    padding: 1.5rem;
+}
+
+.blog-date,
+.blog-details-date {
+    color: var(--gold);
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .12rem;
+    text-transform: uppercase;
+}
+
+.blog-card h2 {
+    margin: .8rem 0;
+    font-size: 1.55rem;
+}
+
+.blog-card-content > p:not(.blog-date) {
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.blog-read-link,
+.back-link {
+    display: inline-block;
+    margin-top: 1.2rem;
+    color: var(--text);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .12rem;
+    text-decoration: none;
+}
+
+    .blog-read-link span {
+        margin-left: .3rem;
+        color: var(--gold);
+        font-size: 1rem;
+    }
+
+.blog-empty,
+.admin-empty {
+    margin-top: 2rem;
+    padding: 4rem 2rem;
+    border: 1px solid var(--line);
+    text-align: center;
+}
+
+    .blog-empty p,
+    .admin-empty p {
+        color: var(--muted);
+    }
+
+/* =========================================================
+   12. DETALHE, CRIAÇÃO E EDIÇÃO DE POSTS
+========================================================= */
+
+.back-link {
+    margin: 0 0 2.5rem;
+    color: var(--gold);
+}
+
+.blog-details-image {
+    display: block;
+    width: 100%;
+    max-height: 560px;
+    margin: 2rem 0 3rem;
+    object-fit: cover;
+}
+
+.blog-details-content {
+    max-width: 760px;
+    color: #ddd2c4;
+    font-size: 1.08rem;
+    line-height: 1.9;
+    white-space: pre-line;
+}
+
+.blog-editor-header,
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.blog-editor-form {
+    max-width: 820px;
+    padding: 2rem;
+    border: 1px solid var(--line);
+    background: var(--bg-card);
+}
+
+.blog-form-field {
+    margin-bottom: 1.4rem;
+}
+
+    .blog-form-field label {
+        display: block;
+        margin-bottom: .55rem;
+        color: var(--text);
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .1rem;
+        text-transform: uppercase;
+    }
+
+    .blog-form-field input,
+    .blog-form-field textarea {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, .22);
+        outline: none;
+        background: rgba(0, 0, 0, .25);
+        color: var(--text);
+        padding: .9rem 1rem;
+        font: inherit;
+    }
+
+    .blog-form-field textarea {
+        resize: vertical;
+    }
+
+        .blog-form-field input:focus,
+        .blog-form-field textarea:focus {
+            border-color: var(--gold);
+        }
+
+    .blog-form-field small {
+        display: block;
+        margin-top: .55rem;
+        color: #aa9e90;
+    }
+
+.blog-validation {
+    display: block;
+    margin-top: .45rem;
+    color: #ffaaa1;
+    font-size: .82rem;
+}
+
+.current-cover {
+    margin: 1.5rem 0;
+}
+
+    .current-cover p {
+        color: var(--gold);
+        font-size: .7rem;
+        font-weight: 800;
+        letter-spacing: .12rem;
+    }
+
+    .current-cover img {
+        display: block;
+        width: min(100%, 340px);
+        max-height: 230px;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, .2);
+    }
+
+.remove-cover,
+.publish-check {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    margin: 1rem 0 1.8rem;
+}
+
+.remove-cover {
+    color: #ffb5ae;
+}
+
+    .remove-cover input,
+    .publish-check input {
+        accent-color: var(--gold);
+    }
+
+.publish-check label {
+    color: #ddd2c4;
+}
+
+.blog-form-actions,
+.admin-header-actions,
+.admin-post-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+}
+
+    .admin-header-actions form,
+    .admin-post-actions form {
+        margin: 0;
+    }
+
+/* =========================================================
+   13. PAINEL ADMINISTRATIVO DO BLOG
+========================================================= */
+
+.admin-post-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.admin-post-card {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-card);
+}
+
+.admin-post-image {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+}
+
+.admin-post-content {
+    padding: 1.75rem;
+}
+
+.admin-post-status {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1rem;
+    color: #aa9e90;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .1rem;
+}
+
+.status-published,
+.status-draft {
+    padding: .35rem .55rem;
+}
+
+.status-published {
+    background: var(--gold);
+    color: #17130f;
+}
+
+.status-draft {
+    border: 1px solid rgba(255, 255, 255, .3);
+    color: var(--text);
+}
+
+.admin-post-content h2 {
+    margin: 0 0 .75rem;
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+}
+
+.admin-post-content > p {
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+/* =========================================================
+   14. LOGIN DO ADMINISTRADOR
+========================================================= */
+
+.identity-page {
+    background: radial-gradient(circle at top, #292019 0%, #17130f 55%);
+}
+
+    .identity-page main {
+        width: min(100% - 2rem, 600px);
+        min-height: calc(100vh - 120px);
+        margin: 0 auto;
+        padding: 8rem 0 4rem;
+    }
+
+        .identity-page main > h1 {
+            margin: 0 0 .5rem;
+            color: var(--text);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: .95;
+        }
+
+        .identity-page main h2 {
+            margin: 0 0 1.8rem;
+            color: var(--gold);
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .13rem;
+        }
+
+        .identity-page main .row {
+            margin: 0;
+        }
+
+        .identity-page main .col-md-4 {
+            width: 100%;
+            max-width: 100%;
+            padding: 2rem;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, .22);
+        }
+
+        .identity-page main .col-md-6 {
+            display: none;
+        }
+
+        .identity-page main .form-floating {
+            margin-bottom: 1rem;
+        }
+
+        .identity-page main .form-control {
+            min-height: 54px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 0;
+            background: rgba(0, 0, 0, .28);
+            color: var(--text);
+        }
+
+            .identity-page main .form-control:focus {
+                border-color: var(--gold);
+                background: rgba(0, 0, 0, .4);
+                box-shadow: none;
+                color: var(--text);
+            }
+
+        .identity-page main .form-floating > label,
+        .identity-page main .form-check-label,
+        .identity-page main label {
+            color: #ddd2c4;
+        }
+
+        .identity-page main .btn-primary {
+            width: 100%;
+            margin-top: .8rem;
+            padding: .9rem 1rem;
+            border: 1px solid var(--gold);
+            border-radius: 0;
+            background: var(--gold);
+            color: #17130f;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .1rem;
+        }
+
+            .identity-page main .btn-primary:hover {
+                border-color: var(--gold-light);
+                background: var(--gold-light);
+                color: #17130f;
+            }
+
+        .identity-page main a {
+            color: var(--gold);
+        }
+
+/* =========================================================
+   15. RODAPÉ MINIMALISTA
+========================================================= */
+
+.site-footer {
+    padding: 2.2rem 1rem;
+    border-top: 1px solid var(--line);
+    background: rgba(0, 0, 0, .2);
+    text-align: center;
+}
+
+.footer-home-link {
+    color: var(--text);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .14rem;
+    text-decoration: none;
+}
+
+    .footer-home-link:hover {
+        color: var(--gold);
+    }
+
+.site-footer p {
+    margin: .8rem 0 0;
+    color: #938879;
+    font-size: .72rem;
+}
+
+/* =========================================================
+   16. RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 1000px) {
+    .services-grid,
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .space-gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        max-width: 650px;
+    }
+
+    .about-page {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding-top: 7rem;
+    }
+
+    .about-image-wrap,
+    .about-image {
+        min-height: 0;
+        height: min(78vw, 620px);
+    }
+
+    .about-content {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-login,
+    .site-session .logout-button {
+        top: 16px;
+        right: 16px;
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+
+    .hero-content {
+        padding: 60px 18px 120px;
+    }
+
+    .hero-logo {
+        width: 190px;
+        margin-bottom: 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(4rem, 17vw, 5.5rem);
+    }
+
+    .hero-slogan {
+        font-size: 1.35rem;
+    }
+
+    .hero-text {
+        max-width: 410px;
+        margin: 18px auto 23px;
+        font-size: 13px;
+    }
+
+    .hero-info {
+        bottom: 16px;
+        gap: 7px;
+        font-size: 10px;
+    }
+
+    .services-page,
+    .space-page,
+    .reviews-page,
+    .contact-page {
+        padding: 85px 20px 65px;
+    }
+
+    .page-intro,
+    .services-header,
+    .space-intro {
+        margin-bottom: 45px;
+    }
+
+    .services-grid,
+    .reviews-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .space-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .blog-page,
+    .blog-details-page,
+    .blog-editor-page,
+    .admin-page {
+        width: min(100% - 2rem, 1120px);
+        padding-top: 7rem;
+    }
+
+    .blog-editor-header,
+    .admin-header {
+        display: block;
+    }
+
+        .blog-editor-header > a,
+        .admin-header-actions {
+            margin-top: 1.5rem;
+        }
+
+    .blog-editor-form {
+        padding: 1.2rem;
+    }
+
+    .admin-post-card {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-post-image {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-buttons,
+    .page-cta div {
+        gap: 8px;
+    }
+
+    .button {
+        min-width: 138px;
+        padding: 13px 16px;
+        font-size: 14px;
+    }
+
+    .hero-info span:nth-of-type(1),
+    .hero-info span:nth-of-type(2) {
+        display: none;
+    }
+
+    .space-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .about-page {
+        width: min(100% - 2rem, 1280px);
+        padding-top: 6rem;
+    }
+
+    .about-image-wrap,
+    .about-image {
+        height: 110vw;
+    }
+
+    .about-stats {
+        gap: .6rem;
+    }
+
+        .about-stats strong {
+            font-size: 2rem;
+        }
+
+    .about-content > p:not(.eyebrow) {
+        font-size: .98rem;
+    }
+}
+
+/* ATALHOS FIXOS PARA O ADMIN LOGADO */
+.site-session {
+    position: fixed;
+    z-index: 1000;
+    top: 24px;
+    right: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .site-session form {
+        margin: 0;
+    }
+
+    .site-session .admin-shortcut,
+    .site-session .logout-button {
+        position: static;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 10px 17px;
+        border: 1px solid rgba(184, 154, 103, .8);
+        background: rgba(23, 19, 15, .88);
+        color: var(--text);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 15px;
+        letter-spacing: 2px;
+        line-height: 1;
+        text-decoration: none;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        transition: .25s ease;
+    }
+
+        .site-session .admin-shortcut:hover,
+        .site-session .logout-button:hover {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: #17130f;
+            transform: translateY(-2px);
+        }
+
+@media (max-width: 768px) {
+    .site-session {
+        top: 16px;
+        right: 16px;
+        gap: 6px;
+    }
+
+        .site-session .admin-shortcut,
+        .site-session .logout-button {
+            min-height: 36px;
+            padding: 8px 10px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+}
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+    .instagram-link i {
+        font-size: 17px;
+    }
