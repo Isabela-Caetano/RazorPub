@@ -21,6 +21,11 @@
     <title>@pageTitle | Razor Pub Barbearia</title>
     <meta name="description" content="@description" />
 
+    @if (ViewData["CanonicalUrl"] is string canonicalUrl)
+    {
+        <link rel="canonical" href="@canonicalUrl" />
+    }
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet"
@@ -53,16 +58,16 @@
                 </form>
             </div>
         }
-        else
+        @if (!isIdentityPage && User.Identity?.IsAuthenticated != true)
         {
-
-            <a class="home-login"
-               asp-area="Identity"
-               asp-page="/Account/Login"
-               asp-route-returnUrl="/Blog/Manage">
-                ÁREA ADMIN
+            <a class="whatsapp-float"
+               href="https://wa.me/5511916599253?text=Oi%2C%20tenho%20interesse%20em%20agendar%20um%20horario"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Fale conosco pelo WhatsApp">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                <span>FALE CONOSCO</span>
             </a>
-
         }
     }
 
@@ -76,6 +81,12 @@
            class="footer-home-link">
             RAZOR PUB BARBEARIA
         </a>
+
+        <p class="footer-hours">
+            <strong>HORÁRIOS:</strong>
+            SEGUNDA A SEXTA, DAS 10H ÀS 20H ·
+            SÁBADO, DAS 9H ÀS 19H
+        </p>
 
         <p>
             © @DateTime.Now.Year Razor Pub Barbearia.

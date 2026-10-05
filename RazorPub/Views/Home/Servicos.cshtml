@@ -1,7 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Serviços de Barbearia em Interlagos";
+    ViewData["Title"] =
+        "Serviços de Barbearia e Prótese Capilar em Interlagos";
+
     ViewData["Description"] =
-        "Conheça os serviços e valores da Razor Pub Barbearia em Interlagos.";
+        "Conheça os serviços de barbearia e solicite uma avaliação para prótese capilar na Razor Pub Barbearia em Interlagos.";
 }
 
 <section class="services-page">
@@ -16,84 +18,86 @@
         </p>
     </div>
 
-    <div class="services-grid">
-        <article class="service-card">
-            <div class="service-card-top">
-                <span class="service-icon">✂</span>
+    <div class="services-layout">
+        <div class="services-list">
+            <article class="service-list-item">
+                <div>
+                    <h2>CORTE MASCULINO MASTER</h2>
+                    <p>Corte personalizado com acabamento premium.</p>
+                </div>
+
                 <span class="service-price">R$ 70</span>
-            </div>
+            </article>
 
-            <h2>CORTE MASCULINO MASTER</h2>
+            <article class="service-list-item">
+                <div>
+                    <h2>BARBA</h2>
+                    <p>Ritual completo com toalha quente e navalha.</p>
+                </div>
 
-            <p>
-                Corte personalizado com acabamento premium.
-            </p>
-        </article>
-
-        <article class="service-card">
-            <div class="service-card-top">
-                <span class="service-icon">✂</span>
                 <span class="service-price">R$ 60</span>
-            </div>
+            </article>
 
-            <h2>BARBA</h2>
+            <article class="service-list-item">
+                <div>
+                    <h2>CORTE + BARBA</h2>
+                    <p>A experiência completa do cavalheiro.</p>
+                </div>
 
-            <p>
-                Ritual completo com toalha quente e navalha.
-            </p>
-        </article>
-
-        <article class="service-card">
-            <div class="service-card-top">
-                <span class="service-icon">✂</span>
                 <span class="service-price">R$ 120</span>
-            </div>
+            </article>
 
-            <h2>CORTE + BARBA</h2>
+            <article class="service-list-item">
+                <div>
+                    <h2>SOBRANCELHAS</h2>
+                    <p>Design masculino preciso e discreto.</p>
+                </div>
 
-            <p>
-                A experiência completa do cavalheiro.
-            </p>
-        </article>
-
-        <article class="service-card">
-            <div class="service-card-top">
-                <span class="service-icon">✂</span>
                 <span class="service-price">R$ 25</span>
-            </div>
+            </article>
 
-            <h2>SOBRANCELHAS</h2>
+            <article class="service-list-item">
+                <div>
+                    <h2>SELAGEM</h2>
+                    <p>Tratamento de hidratação e alinhamento.</p>
+                </div>
 
-            <p>
-                Design masculino preciso e discreto.
-            </p>
-        </article>
-
-        <article class="service-card">
-            <div class="service-card-top">
-                <span class="service-icon">✂</span>
                 <span class="service-price">R$ 180</span>
-            </div>
+            </article>
 
-            <h2>SELAGEM</h2>
+            <article class="service-list-item">
+                <div>
+                    <h2>PEZINHO / ACABAMENTO</h2>
+                    <p>Finalização e contorno impecável.</p>
+                </div>
 
-            <p>
-                Tratamento de hidratação e alinhamento.
-            </p>
-        </article>
-
-        <article class="service-card">
-            <div class="service-card-top">
-                <span class="service-icon">✂</span>
                 <span class="service-price">R$ 35</span>
+            </article>
+        </div>
+
+        <a class="prosthesis-feature"
+           href="https://wa.me/5511916599253?text=Oi%2C%20tenho%20interesse%20em%20agendar%20um%20horario"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Falar no WhatsApp sobre prótese capilar">
+            <img src="~/imagens/protesecapilar.png"
+                 alt="Antes e depois de prótese capilar na Razor Pub" />
+
+            <div class="prosthesis-feature-content">
+                <p class="eyebrow">NOVIDADE NA RAZOR PUB</p>
+
+                <h2>PRÓTESE CAPILAR</h2>
+
+                <p>
+                    Realce sua imagem com uma avaliação personalizada,
+                    discrição e resultado pensado para você.
+                </p>
+
+                <span class="prosthesis-feature-action">
+                    SOLICITE UM ORÇAMENTO <span>→</span>
+                </span>
             </div>
-
-            <h2>PEZINHO / ACABAMENTO</h2>
-
-            <p>
-                Finalização e contorno impecável.
-            </p>
-        </article>
+        </a>
     </div>
 
     <section class="page-cta">
@@ -101,7 +105,7 @@
 
         <div>
             <a class="button button-light"
-               href="https://wa.me/5511916599253"
+               href="https://wa.me/5511916599253?text=Oi%2C%20tenho%20interesse%20em%20agendar%20um%20horario"
                target="_blank"
                rel="noopener noreferrer">
                 AGENDAR HORÁRIO
@@ -118,7 +122,6 @@
                asp-action="Index">
                 VOLTAR AO INÍCIO
             </a>
-
         </div>
     </section>
 </section>

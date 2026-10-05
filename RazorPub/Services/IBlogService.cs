@@ -10,6 +10,8 @@ public interface IBlogService
 
     Task<BlogPost?> GetByIdAsync(int id);
 
+    Task<BlogPost?> GetBySlugAsync(string slug);
+
     Task CreateAsync(BlogPost post);
 
     Task UpdateAsync(BlogPost post);

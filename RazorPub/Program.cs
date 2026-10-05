@@ -63,6 +63,15 @@ app.UseAuthorization();
 app.MapStaticAssets();
 
 app.MapControllerRoute(
+    name: "blogPost",
+    pattern: "blog/{slug}",
+    defaults: new
+    {
+        controller = "Blog",
+        action = "DetailsBySlug"
+    });
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();

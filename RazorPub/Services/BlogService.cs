@@ -26,6 +26,12 @@ public class BlogService(ApplicationDbContext context) : IBlogService
         return await context.BlogPosts.FindAsync(id);
     }
 
+    public async Task<BlogPost?> GetBySlugAsync(string slug)
+    {
+        return await context.BlogPosts
+            .FirstOrDefaultAsync(post => post.Slug == slug);
+    }
+
     public async Task CreateAsync(BlogPost post)
     {
         post.CreatedAt = DateTime.UtcNow;
@@ -48,6 +54,8 @@ public class BlogService(ApplicationDbContext context) : IBlogService
         post.Content = incomingPost.Content;
         post.IsPublished = incomingPost.IsPublished;
         post.CoverImagePath = incomingPost.CoverImagePath;
+        post.ContentImagePath = incomingPost.ContentImagePath;
+        post.Slug = incomingPost.Slug;
 
         await context.SaveChangesAsync();
     }

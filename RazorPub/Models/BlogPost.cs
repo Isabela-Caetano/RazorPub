@@ -19,6 +19,11 @@ public class BlogPost
 
     [StringLength(260)]
     public string? CoverImagePath { get; set; }
+    [StringLength(260)]
+    public string? ContentImagePath { get; set; }
+
+    [StringLength(180)]
+    public string? Slug { get; set; }
     public bool IsPublished { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

@@ -1,9 +1,47 @@
-﻿@model RazorPub.Models.BlogPost
+﻿@using System.Text.Json
+@model RazorPub.Models.BlogPost
 
 @{
     ViewData["Title"] = Model.Title;
     ViewData["Description"] = Model.Summary;
+
+    var contentImagePath =
+        Model.ContentImagePath ?? Model.CoverImagePath;
+
+    var canonicalPath = !string.IsNullOrWhiteSpace(Model.Slug)
+        ? $"/blog/{Model.Slug}"
+        : Url.Action("Details", "Blog", new { id = Model.Id }) ?? "/blog";
+
+    var canonicalUrl =
+        $"{Context.Request.Scheme}://{Context.Request.Host}{canonicalPath}";
+
+    ViewData["CanonicalUrl"] = canonicalUrl;
+
+    var articleData = new Dictionary<string, object?>
+    {
+        ["@context"] = "https://schema.org",
+        ["@type"] = "BlogPosting",
+        ["headline"] = Model.Title,
+        ["description"] = Model.Summary,
+        ["datePublished"] = Model.CreatedAt.ToUniversalTime().ToString("O"),
+        ["mainEntityOfPage"] = canonicalUrl,
+        ["publisher"] = new Dictionary<string, string>
+        {
+            ["@type"] = "Organization",
+            ["name"] = "Razor Pub Barbearia"
+        }
+    };
+
+    if (!string.IsNullOrWhiteSpace(contentImagePath))
+    {
+        articleData["image"] =
+            $"{Context.Request.Scheme}://{Context.Request.Host}{contentImagePath}";
+    }
 }
+
+<script type="application/ld+json">
+    @Html.Raw(JsonSerializer.Serialize(articleData))
+</script>
 
 <article class="blog-details-page">
     <div class="blog-details-header">
@@ -20,9 +58,9 @@
         </p>
     </div>
 
-    @if (!string.IsNullOrWhiteSpace(Model.CoverImagePath))
+    @if (!string.IsNullOrWhiteSpace(contentImagePath))
     {
-        <img src="@Model.CoverImagePath"
+        <img src="@contentImagePath"
              alt="@Model.Title"
              class="blog-details-image" />
     }
@@ -36,7 +74,7 @@
 
         <div>
             <a class="button button-light"
-               href="https://wa.me/5511916599253"
+               href="https://wa.me/5511916599253?text=Oi%2C%20tenho%20interesse%20em%20agendar%20um%20horario"
                target="_blank"
                rel="noopener noreferrer">
                 AGENDAR HORÁRIO

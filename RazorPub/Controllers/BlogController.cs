@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Globalization;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RazorPub.Models;
@@ -24,6 +26,15 @@ public class BlogController(
             : View(post);
     }
 
+    public async Task<IActionResult> DetailsBySlug(string slug)
+    {
+        var post = await blogService.GetBySlugAsync(slug);
+
+        return post is null || !post.IsPublished
+            ? NotFound()
+            : View("Details", post);
+    }
+
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Manage()
     {
@@ -38,7 +49,8 @@ public class BlogController(
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(
         BlogPost post,
-        IFormFile? coverImage)
+        IFormFile? coverImage,
+        IFormFile? contentImage)
     {
         if (!ModelState.IsValid)
         {
@@ -49,6 +61,21 @@ public class BlogController(
         {
             post.CoverImagePath =
                 await imageStorage.SaveAsync(coverImage);
+
+            post.ContentImagePath =
+                await imageStorage.SaveAsync(contentImage);
+
+            if (string.IsNullOrWhiteSpace(post.CoverImagePath))
+            {
+                post.CoverImagePath = post.ContentImagePath;
+            }
+
+            if (string.IsNullOrWhiteSpace(post.ContentImagePath))
+            {
+                post.ContentImagePath = post.CoverImagePath;
+            }
+
+            post.Slug = await GenerateUniqueSlugAsync(post.Title);
 
             await blogService.CreateAsync(post);
 
@@ -74,10 +101,12 @@ public class BlogController(
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(
-       int id,
-       BlogPost post,
-       IFormFile? coverImage,
-       bool removeCoverImage)
+        int id,
+        BlogPost post,
+        IFormFile? coverImage,
+        IFormFile? contentImage,
+        bool removeCoverImage,
+        bool removeContentImage)
     {
         if (id != post.Id)
         {
@@ -93,12 +122,35 @@ public class BlogController(
         {
             if (coverImage is not null && coverImage.Length > 0)
             {
-                post.CoverImagePath = await imageStorage.SaveAsync(coverImage);
+                post.CoverImagePath =
+                    await imageStorage.SaveAsync(coverImage);
             }
             else if (removeCoverImage)
             {
                 post.CoverImagePath = null;
             }
+
+            if (contentImage is not null && contentImage.Length > 0)
+            {
+                post.ContentImagePath =
+                    await imageStorage.SaveAsync(contentImage);
+            }
+            else if (removeContentImage)
+            {
+                post.ContentImagePath = null;
+            }
+
+            if (string.IsNullOrWhiteSpace(post.CoverImagePath))
+            {
+                post.CoverImagePath = post.ContentImagePath;
+            }
+
+            if (string.IsNullOrWhiteSpace(post.ContentImagePath))
+            {
+                post.ContentImagePath = post.CoverImagePath;
+            }
+
+            post.Slug = await GenerateUniqueSlugAsync(post.Title, post.Id);
 
             await blogService.UpdateAsync(post);
 
@@ -130,5 +182,63 @@ public class BlogController(
         await blogService.TogglePublishedAsync(id);
 
         return RedirectToAction(nameof(Manage));
+    }
+
+    private async Task<string> GenerateUniqueSlugAsync(
+        string title,
+        int? currentPostId = null)
+    {
+        var baseSlug = GenerateSlug(title);
+
+        if (string.IsNullOrWhiteSpace(baseSlug))
+        {
+            baseSlug = "post";
+        }
+
+        var slug = baseSlug;
+        var suffix = 2;
+
+        while (true)
+        {
+            var existingPost = await blogService.GetBySlugAsync(slug);
+
+            if (existingPost is null || existingPost.Id == currentPostId)
+            {
+                return slug;
+            }
+
+            slug = $"{baseSlug}-{suffix}";
+            suffix++;
+        }
+    }
+
+    private static string GenerateSlug(string text)
+    {
+        var normalizedText = text.Normalize(NormalizationForm.FormD);
+        var slug = new StringBuilder();
+        var previousCharacterWasDash = false;
+
+        foreach (var character in normalizedText)
+        {
+            var category = CharUnicodeInfo.GetUnicodeCategory(character);
+
+            if (category == UnicodeCategory.NonSpacingMark)
+            {
+                continue;
+            }
+
+            if (char.IsLetterOrDigit(character))
+            {
+                slug.Append(char.ToLowerInvariant(character));
+                previousCharacterWasDash = false;
+            }
+            else if (slug.Length > 0 && !previousCharacterWasDash)
+            {
+                slug.Append('-');
+                previousCharacterWasDash = true;
+            }
+        }
+
+        return slug.ToString().Trim('-');
     }
 }

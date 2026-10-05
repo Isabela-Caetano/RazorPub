@@ -8,6 +8,7 @@
 
     <input asp-for="Id" type="hidden" />
     <input asp-for="CoverImagePath" type="hidden" />
+    <input asp-for="ContentImagePath" type="hidden" />
 
     <div asp-validation-summary="ModelOnly"
          class="blog-validation">
@@ -19,7 +20,9 @@
         <input asp-for="Title"
                placeholder="Ex.: Como cuidar da barba no dia a dia" />
 
-        <span asp-validation-for="Title" class="blog-validation"></span>
+        <span asp-validation-for="Title"
+              class="blog-validation">
+        </span>
     </div>
 
     <div class="blog-form-field">
@@ -29,7 +32,9 @@
                   rows="3"
                   placeholder="Um pequeno resumo que aparecerá na página do blog."></textarea>
 
-        <span asp-validation-for="Summary" class="blog-validation"></span>
+        <span asp-validation-for="Summary"
+              class="blog-validation">
+        </span>
     </div>
 
     <div class="blog-form-field">
@@ -37,9 +42,11 @@
 
         <textarea asp-for="Content"
                   rows="12"
-                  placeholder="Escreva o conteúdo completo do post այստեղ."></textarea>
+                  placeholder="Escreva o conteúdo completo do post aqui."></textarea>
 
-        <span asp-validation-for="Content" class="blog-validation"></span>
+        <span asp-validation-for="Content"
+              class="blog-validation">
+        </span>
     </div>
 
     <div class="blog-form-field">
@@ -50,20 +57,50 @@
                type="file"
                accept=".jpg,.jpeg,.png,.webp" />
 
-        <small>Formatos aceitos: JPG, JPEG, PNG ou WebP. Máximo de 5 MB.</small>
+        <small>
+            Formatos aceitos: JPG, JPEG, PNG ou WebP. Máximo de 5 MB.
+        </small>
 
         <span class="blog-validation">
             @Html.ValidationMessage("coverImage")
         </span>
     </div>
 
+    <div class="blog-form-field">
+        <label for="contentImage">Imagem do conteúdo</label>
+
+        <input id="contentImage"
+               name="contentImage"
+               type="file"
+               accept=".jpg,.jpeg,.png,.webp" />
+
+        <small>
+            Opcional. Se você enviar apenas uma imagem, ela será usada
+            como capa e também dentro do post.
+        </small>
+
+        <span class="blog-validation">
+            @Html.ValidationMessage("contentImage")
+        </span>
+    </div>
+
     @if (!string.IsNullOrWhiteSpace(Model.CoverImagePath))
     {
         <div class="current-cover">
-            <p>IMAGEM ATUAL</p>
+            <p>IMAGEM ATUAL DE CAPA</p>
 
             <img src="@Model.CoverImagePath"
-                 alt="Imagem atual do post" />
+                 alt="Imagem de capa atual do post" />
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.ContentImagePath))
+    {
+        <div class="current-cover">
+            <p>IMAGEM ATUAL DO CONTEÚDO</p>
+
+            <img src="@Model.ContentImagePath"
+                 alt="Imagem atual do conteúdo do post" />
         </div>
     }
 
@@ -95,6 +132,20 @@
 
             <label for="removeCoverImage">
                 Remover a imagem de capa atual
+            </label>
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.ContentImagePath))
+    {
+        <div class="remove-cover">
+            <input id="removeContentImage"
+                   name="removeContentImage"
+                   type="checkbox"
+                   value="true" />
+
+            <label for="removeContentImage">
+                Remover a imagem atual do conteúdo
             </label>
         </div>
     }

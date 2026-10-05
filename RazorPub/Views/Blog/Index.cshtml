@@ -33,11 +33,24 @@
                 <article class="blog-card">
                     @if (!string.IsNullOrWhiteSpace(post.CoverImagePath))
                     {
-                        <a asp-action="Details" asp-route-id="@post.Id">
-                            <img src="@post.CoverImagePath"
-                                 alt="@post.Title"
-                                 class="blog-card-image" />
-                        </a>
+                        @if (!string.IsNullOrWhiteSpace(post.Slug))
+                        {
+                            <a asp-action="DetailsBySlug"
+                               asp-route-slug="@post.Slug">
+                                <img src="@post.CoverImagePath"
+                                     alt="@post.Title"
+                                     class="blog-card-image" />
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="Details"
+                               asp-route-id="@post.Id">
+                                <img src="@post.CoverImagePath"
+                                     alt="@post.Title"
+                                     class="blog-card-image" />
+                            </a>
+                        }
                     }
 
                     <div class="blog-card-content">
@@ -49,11 +62,22 @@
 
                         <p>@post.Summary</p>
 
-                        <a asp-action="Details"
-                           asp-route-id="@post.Id"
-                           class="blog-read-link">
-                            LER POST <span>→</span>
-                        </a>
+                        @if (!string.IsNullOrWhiteSpace(post.Slug))
+                        {
+                            <a asp-action="DetailsBySlug"
+                               asp-route-slug="@post.Slug"
+                               class="blog-read-link">
+                                LER POST <span>→</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="Details"
+                               asp-route-id="@post.Id"
+                               class="blog-read-link">
+                                LER POST <span>→</span>
+                            </a>
+                        }
                     </div>
                 </article>
             }
@@ -65,7 +89,7 @@
 
         <div>
             <a class="button button-light"
-               href="https://wa.me/5511916599253"
+               href="https://wa.me/5511916599253?text=Oi%2C%20tenho%20interesse%20em%20agendar%20um%20horario"
                target="_blank"
                rel="noopener noreferrer">
                 AGENDAR HORÁRIO
@@ -82,7 +106,6 @@
                asp-action="Index">
                 VOLTAR AO INÍCIO
             </a>
-
         </div>
     </section>
 </section>
